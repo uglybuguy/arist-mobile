@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arist Mobile Mockup</title>
+<style>
+html,body{
+margin:0;
+padding:0;
+background:#000;
+height:100%;
+overflow:hidden;
+font-family:Arial,sans-serif;
+}
+.page{
+position:absolute;
+inset:0;
+display:none;
+}
+.page.active{display:block;}
+.page img{
+width:100%;
+height:100%;
+object-fit:contain;
+background:#000;
+}
+.nav{
+position:fixed;
+top:0;
+right:-100%;
+width:100%;
+height:100%;
+background:#000;
+transition:.3s;
+z-index:20;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding-left:8vw;
+box-sizing:border-box;
+}
+.nav.open{right:0;}
+.nav a{
+color:#ddd;
+text-decoration:none;
+font-size:15vw;
+font-weight:bold;
+margin:2vh 0;
+}
+.close{
+position:absolute;
+top:20px;
+right:25px;
+font-size:70px;
+color:#ddd;
+cursor:pointer;
+}
+.hotspot{
+position:fixed;
+top:0;
+right:0;
+width:120px;
+height:120px;
+z-index:10;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="hotspot" onclick="openMenu()"></div>
+
+<div id="menu" class="nav">
+<div class="close" onclick="closeMenu()">×</div>
+<a href="#" onclick="showPage('home')">HOME</a>
+<a href="#" onclick="showPage('release')">MUSIC</a>
+<a href="#" onclick="showPage('contact')">CONTACT</a>
+</div>
+
+<div id="home" class="page active"><img src="home.png"></div>
+<div id="release" class="page"><img src="release.png"></div>
+<div id="contact" class="page"><img src="contact.png"></div>
+
+<script>
+function openMenu(){document.getElementById('menu').classList.add('open');}
+function closeMenu(){document.getElementById('menu').classList.remove('open');}
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+closeMenu();
+}
+</script>
+</body>
+</html>
